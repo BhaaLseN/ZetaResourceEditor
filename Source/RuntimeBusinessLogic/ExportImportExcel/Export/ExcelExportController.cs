@@ -483,7 +483,7 @@ namespace ZetaResourceEditor.RuntimeBusinessLogic.ExportImportExcel.Export
                     if (preparedInformation.ExportFileGroupColumn)
                     {
                         // Checksum.
-                        dataTable.Columns.Add(Resources.SR_CommandProcessorSend_Process_Group, typeof(int));
+                        dataTable.Columns.Add(Resources.SR_CommandProcessorSend_Process_Group, typeof(string));
                     }
                     if (preparedInformation.ExportNameColumn)
                     {
@@ -582,7 +582,7 @@ namespace ZetaResourceEditor.RuntimeBusinessLogic.ExportImportExcel.Export
                             {
                                 // Checksum.
                                 checkEnsureRowPresent(dataTable, currentRowIndex);
-                                rows[currentRowIndex][columnStartIndex] = fileGroup.GetChecksum(preparedInformation.Project);
+                                rows[currentRowIndex][columnStartIndex] = fileGroup.GetChecksum(preparedInformation.Project).ToString();
                                 makeCellReadOnly(dataTable.Columns[columnStartIndex]);
                                 offset++;
                             }
