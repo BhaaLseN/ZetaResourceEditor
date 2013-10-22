@@ -460,7 +460,12 @@ namespace ZetaResourceEditor.RuntimeBusinessLogic.ExportImportExcel.Export
                     dataSet.Tables.Add();
                     worksheetIndex = dataSet.Tables.Count - 1;
                     dataTable = dataSet.Tables[worksheetIndex];
-                    dataTable.TableName = generateWorksheetName(preparedInformation, fileGroup, preparedInformation.Project);
+                    string newWS = generateWorksheetName(preparedInformation, fileGroup, preparedInformation.Project);
+                    string baseName = newWS;
+                    int i = 0;
+                    while (dataSet.Tables.Contains(newWS))
+                        newWS = baseName + (++i);
+                    dataTable.TableName = newWS;
                 }
 
                 var rows = dataTable.Rows;
